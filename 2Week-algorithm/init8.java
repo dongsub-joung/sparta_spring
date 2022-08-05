@@ -87,4 +87,8 @@ class Solution8{
 
         return Long.parseLong(sb.toString());
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 7156006ce81c05ccc2b4f3e7c37bdbd3624dbe23
