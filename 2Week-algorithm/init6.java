@@ -1,30 +1,38 @@
+//https://school.programmers.co.kr/learn/courses/30/lessons/12931
+
+//자연수 N이 주어지면, N의 각 자릿수의 합을 구해서 return 하는 solution 함수를 만들어 주세요.
+
 public class init6 {
     public static void main(String[] args) {
-        final long N= 12345;
+        final int ONE= 123;
+        final int TWO= 987;
 
+        int result1= Solution6.solutionA(ONE);
+        int result2= Solution6.solutionB(TWO);
+
+        System.out.println(result1);
+        System.out.println(result2);
     }
 }
 
 class Solution6 {
-    public int[] solution(long n) {
-        int[] answer = {};
-        String str= "" + n;
-        char[] chars= str.toCharArray();
+    public static int solutionA(int n) {
+        int answer = 0;
 
+        while(n > 0){
+            answer += n%10;
+            n/=10;
+        }
         return answer;
     }
 
-    public int[] solutionB(long n){
-        String str= ""+n;
-        int[] answer= new int[str.length()];
-        int cnt= 0;
+    public static int solutionB(int n){
+        int answer= 0;
+        String str= Integer.toString(n);
 
-        while (n>0){
-            answer[cnt]= (int)(n%10);
-            n/= 10;
-            cnt++;
-        }
-
+        String num= new String();
+        for (int i=0; i< str.length(); i++)
+            answer+= Integer.parseInt(str.substring(i, i+1));
         return answer;
     }
 }
