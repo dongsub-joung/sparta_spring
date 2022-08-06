@@ -1,74 +1,83 @@
-public class Bus{
-    int max_people, current_people;
+public class Bus extends Car{
+    int max_people;
     int bill;
-    String car_number;
-    int oil_percent;
-    int speed;
-    boolean run;
-    String current_bus_stop;
-    String next_bus_stop;
 
     Bus(){
         current_people= 0;
         max_people= 30;
         bill= 500;
-        car_number= RandomGenerator.char_init()
+        car_number= ""
                 + RandomGenerator.number_init();
-        oil_percent= 90;
-        speed= 60;
-        run= true;
+        oil= 100;
+        speed= 0;
+        run= false;
         current_bus_stop= "school";
         next_bus_stop= "abc Market";
     }
 
-    protected int add_person(){
-        return this.current_people+= 1;
+    protected int showRemains(){
+        return this.max_people - this.current_people;
     }
 
-    protected void chage_speed(int n){
-        if (this.oil_percent < 10){
-            System.out.print("주유량을 확인해 주세요.\n");
-            return;
-        }
-        this.speed+= n;
-
+    protected int checkBills(){
+        return this.current_people * this.bill;
     }
 
-    public static void main(String[] args) {
+    protected void changeOil(int n){
+        this.oil+= n;
+    }
+
+    protected void returnCarcenter(){
+        this.current_bus_stop= "차고지행";
+        this.changeOil(10);
+        this.run= false;
+    }
+
+    public static void main(String[] ar차고지행gs) {
+//        각 Bus 번호 다른지 확인
         Bus bus= new Bus();
-//        good way
-        int people= bus.current_people;
+        Bus bus2= new Bus();
+        System.out.println(bus.car_number);
+        System.out.println(bus2.car_number);
 
-//        bad way
-        boolean lack_of_oil= bus.oil_percent == 0;
+//        승객 +2
+        bus.add_person();
+        bus.add_person();
+        System.out.println(bus.current_people);
+        System.out.println(bus.showRemains());
+        System.out.println(bus.checkBills());
+
+//      주유량 -50
+        bus.changeOil(-50);
+        System.out.println(bus.oil);
+
+//        차고지행
+        bus.returnCarcenter();
+        System.out.println(bus.current_bus_stop);
+        System.out.println(bus.oil);
+        System.out.println(bus.run);
+
+        bus.turnOn();
+        System.out.println(bus.run);
+
+        if () {
+
+        }
+
+        boolean lack_of_oil= bus.oil == 0;
         boolean close_runing= bus.current_bus_stop == "차고지행";;
 
         if (lack_of_oil || close_runing)
             bus.run= false;
-        if (bus.oil_percent < 10){
+        if (bus.oil < 10){
             System.out.println("주유가 필요하다’");
         }
 
         people= bus.add_person();
 
-        if (people > bus.max_people) {
-            people= 30;
-        }
 
-        bus.chage_speed(50);
 
-    }
-}
+        bus.change_speed(50);
 
-class RandomGenerator{
-    protected static double number_init(){
-        double random= 0.0;
-
-        return random;
-    }
-    protected static String char_init(){
-        String random= "";
-
-        return random;
     }
 }
