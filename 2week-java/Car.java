@@ -11,15 +11,19 @@ class Car {
         current_people= 0;
         car_number= ""
                 + RandomGenerator.number_init();
-        oil= 90;
+        oil= 100;
         speed= 60;
         run= false;
         current_bus_stop= "school";
         next_bus_stop= "abc Market";
     }
 
-    protected int add_person(){
-        return this.current_people+= 1;
+    protected void add_person(int n){
+        this.current_people+= n;
+    }
+
+    protected void changeOil(int n){
+        this.oil+= n;
     }
 
     protected void change_speed(int n){
@@ -33,10 +37,15 @@ class Car {
     protected void turnOn(){
         this.run= true;
     }
+    protected void setCurrentBusStop(String bus_stop){
+        this.current_bus_stop= bus_stop;
+    }
+    protected void setNextBusStop(String bus_stop){
+        this.current_bus_stop= bus_stop;
+    }
     class RandomGenerator{
-        protected static double number_init(){
-            double random= 0.0;
-
+        protected static int  number_init(){
+            int random= (int)(Math.random() * 10000);
             return random;
         }
     }

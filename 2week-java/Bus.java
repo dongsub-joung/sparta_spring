@@ -5,7 +5,7 @@ public class Bus extends Car{
     Bus(){
         current_people= 0;
         max_people= 30;
-        bill= 500;
+        bill= 1000;
         car_number= ""
                 + RandomGenerator.number_init();
         oil= 100;
@@ -23,17 +23,35 @@ public class Bus extends Car{
         return this.current_people * this.bill;
     }
 
+    @Override
     protected void changeOil(int n){
         this.oil+= n;
+        if (this.oil < 10){
+            this.current_bus_stop="차고지행";
+            this.run= false;
+            System.out.println("주유가 필요하다’");
+        }
     }
 
     protected void returnCarcenter(){
         this.current_bus_stop= "차고지행";
+        this.current_people= 0;
         this.changeOil(10);
         this.run= false;
     }
 
-    public static void main(String[] ar차고지행gs) {
+    @Override
+    protected void add_person(int n){
+        int people= current_people+ n;
+        if (this.max_people < people){
+            System.out.println("최대 승객 수 초과");
+            this.current_people= this.current_people;
+        } else {
+            this.current_people+= n;
+        }
+    }
+
+    public static void main(String[] args) {
 //        각 Bus 번호 다른지 확인
         Bus bus= new Bus();
         Bus bus2= new Bus();
@@ -41,8 +59,8 @@ public class Bus extends Car{
         System.out.println(bus2.car_number);
 
 //        승객 +2
-        bus.add_person();
-        bus.add_person();
+        bus.add_person(1);
+        bus.add_person(1);
         System.out.println(bus.current_people);
         System.out.println(bus.showRemains());
         System.out.println(bus.checkBills());
@@ -60,24 +78,16 @@ public class Bus extends Car{
         bus.turnOn();
         System.out.println(bus.run);
 
-        if () {
+        bus.add_person(45);
+        bus.add_person(5);
 
-        }
+        System.out.println(bus.current_people);
+        System.out.println(bus.showRemains());
+        System.out.println(bus.checkBills());
 
-        boolean lack_of_oil= bus.oil == 0;
-        boolean close_runing= bus.current_bus_stop == "차고지행";;
+//        주유량 -55
+        bus.changeOil(-55);
 
-        if (lack_of_oil || close_runing)
-            bus.run= false;
-        if (bus.oil < 10){
-            System.out.println("주유가 필요하다’");
-        }
-
-        people= bus.add_person();
-
-
-
-        bus.change_speed(50);
-
+        System.out.println(bus.oil);
     }
 }
