@@ -49,7 +49,6 @@ class Car {
     protected void setNextSpot(String spot){
         this.next_spot= spot;
     }
-    
     class RandomGenerator{
         protected static int  number_init(){
             int random= (int)(Math.random() * 10000);
