@@ -19,13 +19,19 @@ Update 매서드를 Service 클래스에서 구현하여 controller에서 사용
 ---
 
 ## RESTful한 API를 설계했나요? 어떤 부분이 그런가요? 어떤 부분이 그렇지 않나요?
-- Representational State Transfer API
-
+### 정의
+> Representational State Transfer API
 >    자원(Resource) - URL
 >   행위(Verb) - Http Method
 >    표현(Representations)
 
 - [Ref]([https://ibocon.tistory.com/208](https://velog.io/@somday/RESTful-API-%EC%9D%B4%EB%9E%80))
+
+### 그랬던 부분
+
+### 그렇지 못한 부분
+
+PUT은 수정사항인데도 불구하고 모든 엔티티를 반영하지 못했다.(일부만 수정은 PATCH)
 
 ---
 
